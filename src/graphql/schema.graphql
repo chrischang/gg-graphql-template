@@ -1,0 +1,186 @@
+type Query {
+  user(id: String!, timestamp: Int): User
+  users(timestamp: Int, where: UserFilter, orderBy: String, orderDirection: String, before: String, after: String, limit: Int): UserPage!
+  race(id: BigInt!, timestamp: Int): Race
+  races(timestamp: Int, where: RaceFilter, orderBy: String, orderDirection: String, before: String, after: String, limit: Int): RacePage!
+  bet(id: String!, timestamp: Int): Bet
+  bets(timestamp: Int, where: BetFilter, orderBy: String, orderDirection: String, before: String, after: String, limit: Int): BetPage!
+}
+
+type User {
+  id: String!
+  bets(where: UserFilter, orderBy: String, orderDirection: String, before: String, after: String, limit: Int): BetPage
+  winningAmount: BigInt!
+  totalBetAmount: BigInt!
+}
+
+type BetPage {
+  items: [Bet!]!
+  pageInfo: PageInfo!
+}
+
+type Bet {
+  id: String!
+  raceId: BigInt!
+  userId: String!
+  racer: String!
+  amount: BigInt!
+  txHash: String!
+}
+
+scalar BigInt
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+input UserFilter {
+  AND: [UserFilter]
+  OR: [UserFilter]
+  id: String
+  id_not: String
+  id_in: [String]
+  id_not_in: [String]
+  id_gt: String
+  id_lt: String
+  id_gte: String
+  id_lte: String
+  winningAmount: BigInt
+  winningAmount_not: BigInt
+  winningAmount_in: [BigInt]
+  winningAmount_not_in: [BigInt]
+  winningAmount_gt: BigInt
+  winningAmount_lt: BigInt
+  winningAmount_gte: BigInt
+  winningAmount_lte: BigInt
+  totalBetAmount: BigInt
+  totalBetAmount_not: BigInt
+  totalBetAmount_in: [BigInt]
+  totalBetAmount_not_in: [BigInt]
+  totalBetAmount_gt: BigInt
+  totalBetAmount_lt: BigInt
+  totalBetAmount_gte: BigInt
+  totalBetAmount_lte: BigInt
+}
+
+type UserPage {
+  items: [User!]!
+  pageInfo: PageInfo!
+}
+
+type Race {
+  id: BigInt!
+  bets(where: RaceFilter, orderBy: String, orderDirection: String, before: String, after: String, limit: Int): BetPage
+  winner: String!
+  racePool: BigInt!
+  winnerTx: String!
+  startedTx: String!
+}
+
+input RaceFilter {
+  AND: [RaceFilter]
+  OR: [RaceFilter]
+  id: BigInt
+  id_not: BigInt
+  id_in: [BigInt]
+  id_not_in: [BigInt]
+  id_gt: BigInt
+  id_lt: BigInt
+  id_gte: BigInt
+  id_lte: BigInt
+  winner: String
+  winner_not: String
+  winner_in: [String]
+  winner_not_in: [String]
+  winner_gt: String
+  winner_lt: String
+  winner_gte: String
+  winner_lte: String
+  racePool: BigInt
+  racePool_not: BigInt
+  racePool_in: [BigInt]
+  racePool_not_in: [BigInt]
+  racePool_gt: BigInt
+  racePool_lt: BigInt
+  racePool_gte: BigInt
+  racePool_lte: BigInt
+  winnerTx: String
+  winnerTx_not: String
+  winnerTx_in: [String]
+  winnerTx_not_in: [String]
+  winnerTx_gt: String
+  winnerTx_lt: String
+  winnerTx_gte: String
+  winnerTx_lte: String
+  startedTx: String
+  startedTx_not: String
+  startedTx_in: [String]
+  startedTx_not_in: [String]
+  startedTx_gt: String
+  startedTx_lt: String
+  startedTx_gte: String
+  startedTx_lte: String
+}
+
+type RacePage {
+  items: [Race!]!
+  pageInfo: PageInfo!
+}
+
+input BetFilter {
+  AND: [BetFilter]
+  OR: [BetFilter]
+  id: String
+  id_not: String
+  id_in: [String]
+  id_not_in: [String]
+  id_contains: String
+  id_not_contains: String
+  id_starts_with: String
+  id_ends_with: String
+  id_not_starts_with: String
+  id_not_ends_with: String
+  raceId: BigInt
+  raceId_not: BigInt
+  raceId_in: [BigInt]
+  raceId_not_in: [BigInt]
+  raceId_gt: BigInt
+  raceId_lt: BigInt
+  raceId_gte: BigInt
+  raceId_lte: BigInt
+  userId: String
+  userId_not: String
+  userId_in: [String]
+  userId_not_in: [String]
+  userId_gt: String
+  userId_lt: String
+  userId_gte: String
+  userId_lte: String
+  racer: String
+  racer_not: String
+  racer_in: [String]
+  racer_not_in: [String]
+  racer_gt: String
+  racer_lt: String
+  racer_gte: String
+  racer_lte: String
+  amount: BigInt
+  amount_not: BigInt
+  amount_in: [BigInt]
+  amount_not_in: [BigInt]
+  amount_gt: BigInt
+  amount_lt: BigInt
+  amount_gte: BigInt
+  amount_lte: BigInt
+  txHash: String
+  txHash_not: String
+  txHash_in: [String]
+  txHash_not_in: [String]
+  txHash_gt: String
+  txHash_lt: String
+  txHash_gte: String
+  txHash_lte: String
+}

@@ -1,0 +1,28 @@
+query GetAllRaces {
+    races(orderBy: "id", orderDirection:"desc", limit: 20) {
+        items {
+            id
+            winner
+            bets {
+                items {
+                    id
+                    racer
+                    raceId
+                    userId
+                    amount
+                    txHash
+                }
+            }
+        }
+    }
+}
+
+query GetAllUsers {
+    users(orderBy: "winningAmount", orderDirection:"desc", limit: 1000) {
+        items {
+            id
+            totalBetAmount
+            winningAmount
+        }
+    }
+}
