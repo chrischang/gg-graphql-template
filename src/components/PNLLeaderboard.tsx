@@ -139,6 +139,7 @@ const PNLLeaderboard: FC = () => {
                 "&:hover": {
                   color: "lightblue",
                 },
+                fontFamily: "monospace",
               }}
             >
               {user.id.substring(0, 10)}
