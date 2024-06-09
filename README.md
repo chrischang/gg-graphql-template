@@ -2,7 +2,7 @@
 
 ## Overview
 
-[GhostGraph](GhostGraph.xyz) enables smart contract developers to create indexers in Solidity, which are queryable via
+[GhostGraph](https://GhostGraph.xyz) enables smart contract developers to create indexers in Solidity, which are queryable via
 GraphQL. These indexers typically support the data needs of decentralized applications (dApps).
 
 This repository demonstrates the process using SuperBlurBattlerz, a protocol within the Blast ecosystem, to construct a
